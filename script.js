@@ -1,11 +1,21 @@
 document.body.onclick = function(e) {
-
-var x= e.parentNode;
-  console.log([x]);
-
+  var disconnect = true,
+    target = e.target,
+    path = [];
+  while (disconnect) {
+    var nodeName = target.nodeName;
+    path.push(nodeName);
+    if (nodeName === "HTML") {
+      disconnect = false;
+    } else {
+      target = target.parentNode;
+    }
+  }
+  console.log(path)
 };
 
 
+//Page display time 
 var startTime, endTime;
 window.onscroll = function (e) {
 	stopTimer();
@@ -31,17 +41,6 @@ function display() {
 	console.log(endTime - startTime+"ms");
 	startTime = null, endTime = null;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
